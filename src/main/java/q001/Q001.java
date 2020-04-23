@@ -7,8 +7,8 @@ package q001;
  * 正しく実行できるように修正してください。
  */
 public class Q001 {
-    void main() {
+	public static void main(String[] args) {
         System.out.println("Hello World!");
     }
 }
-// 完成までの時間: xx時間 xx分
+// 完成までの時間: 0時間 1分
