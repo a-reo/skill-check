@@ -38,10 +38,11 @@ public class Q006 {
 
     /**
      * メイン処理
+     *
      * @param args
      */
     public static void main(String[] args) {
-    	Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("逆ポーランド記法の計算式を入力してください > ");
         String line = scanner.nextLine();
         scanner.close();
@@ -50,7 +51,7 @@ public class Q006 {
         Stack<BigDecimal> result = new Stack<>();
 
         for (IValue rpm : rpnList) {
-        	rpm.execute(result);
+            rpm.execute(result);
         }
 
         System.out.print("計算結果 : ");
@@ -59,13 +60,14 @@ public class Q006 {
 
     /**
      * 逆ポーランドで記載された1行のテキストを分解する
+     *
      * @param lineText 1行テキスト
      * @return 分解された値リスト
      */
     private static List<IValue> parseLine(String lineText) {
         List<IValue> resultList = new ArrayList<>();
         // 空白文字で区切ってループする
-        for (String text: lineText.split("[\\s]+")) {
+        for (String text : lineText.split("[\\s]+")) {
             switch (text) {
                 case "+":   // 足し算
                     resultList.add(new PlusValue());

@@ -47,13 +47,13 @@ public class Q007 {
      * @param args
      */
     public static void main(String[] args) {
-    	MazeInputStream maze = new MazeInputStream();
+        MazeInputStream maze = new MazeInputStream();
 
-    	// A-star
-    	// https://ja.wikipedia.org/wiki/A*
-    	try {
-    		// 迷路読み込み & 迷路表示
-    		List<String> lineList = readMaze(maze);
+        // A-star
+        // https://ja.wikipedia.org/wiki/A*
+        try {
+            // 迷路読み込み & 迷路表示
+            List<String> lineList = readMaze(maze);
             width = lineList.get(0).length();
             height = lineList.size();
 
@@ -65,9 +65,9 @@ public class Q007 {
 
             // 答え合わせ用に辿った経路を出力
             System.out.println();
-    		System.out.println("[辿った経路]");
-    		// ブロックに格納した親（進んだ経路）をEndからStartまで辿る
-            Block parent =mazeBlocks[end_x][end_y].parent;
+            System.out.println("[辿った経路]");
+            // ブロックに格納した親（進んだ経路）をEndからStartまで辿る
+            Block parent = mazeBlocks[end_x][end_y].parent;
             while (true) {
                 if (parent.start == false) {
                     parent.correct = true;
@@ -96,45 +96,47 @@ public class Q007 {
                 System.out.println();
             }
             System.out.println();
-    		System.out.println("[答え]");
-    		System.out.println(count);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-		}
+            System.out.println("[答え]");
+            System.out.println(count);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     /**
      * MazeInputStreamを標準出力し、メモリに読み込む
+     *
      * @param maze
      * @return
      * @throws IOException
      */
-    private static List<String>  readMaze(MazeInputStream maze) throws IOException {
-		System.out.println("[迷路]");
-		BufferedReader br = new BufferedReader(new InputStreamReader(maze));
-		List<String> lineList = new ArrayList<String>();
-		String line;
-		while ((line = br.readLine()) != null) {
-			// 空行は読み込まない
-			if (!(line.isEmpty() || line.startsWith(" "))) {
-    			lineList.add(line);
-    			System.out.println(line);
-			}
-		}
-		return lineList;
+    private static List<String> readMaze(MazeInputStream maze) throws IOException {
+        System.out.println("[迷路]");
+        BufferedReader br = new BufferedReader(new InputStreamReader(maze));
+        List<String> lineList = new ArrayList<String>();
+        String line;
+        while ((line = br.readLine()) != null) {
+            // 空行は読み込まない
+            if (!(line.isEmpty() || line.startsWith(" "))) {
+                lineList.add(line);
+                System.out.println(line);
+            }
+        }
+        return lineList;
     }
 
     /**
      * 迷路を1ブロック単位の二次元配列として読み込む<br>
      * Start,Endの位置を特定、各ブロックのゴールまでの最短移動距離を算出する（Xを無視しての距離）
+     *
      * @param lineList
      * @return
      */
     private static Block[][] createMazeBlocks(List<String> lineList) {
         Block[][] mazeBlocks = new Block[width][height];
         for (int y = 0; y < lineList.size(); y++) {
-            for(int x = 0; x < lineList.get(y).length(); x++) {
+            for (int x = 0; x < lineList.get(y).length(); x++) {
                 mazeBlocks[x][y] = new Block();
                 String block = lineList.get(y).substring(x, x + 1);
                 if (" ".equals(block)) {
@@ -166,6 +168,7 @@ public class Q007 {
 
     /**
      * 迷路を探索する
+     *
      * @param mazeBlocks
      * @throws Exception
      */
@@ -229,6 +232,7 @@ public class Q007 {
 
     /**
      * オープンされているブロックのうち、最小コストのブロックを返却する
+     *
      * @return 最小コストのブロック
      */
     private static Block getShortestOpenBlock(List<Block> openList) throws Exception {
@@ -239,7 +243,7 @@ public class Q007 {
         int index = 0;
         for (int i = 0; i < openList.size(); i++) {
             if (shortest == null ||
-                shortest.getPoint() >= openList.get(i).getPoint()) {
+                    shortest.getPoint() >= openList.get(i).getPoint()) {
                 shortest = openList.get(i);
                 index = i;
             }

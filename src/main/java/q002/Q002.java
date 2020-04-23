@@ -54,27 +54,27 @@ public class Q002 {
      * メイン処理
      * @param args
      */
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// ArrayListに変換
-		List<String> list = Arrays.asList(dataList);
+        // ArrayListに変換
+        List<String> list = Arrays.asList(dataList);
 
-		// ソート
-	    Collections.sort(list, new java.util.Comparator<String>() {
-	        @Override
-	        public int compare(String data1, String data2) {
-	        	// ID部分取得
-	        	int id1 = Integer.parseInt(data1.split(",")[0]);
-	        	int id2 = Integer.parseInt(data2.split(",")[0]);
-	        	// 数値比較
-	        	return id1 - id2;
-	        }
-	    });
+        // ソート
+        Collections.sort(list, new java.util.Comparator<String>() {
+            @Override
+            public int compare(String data1, String data2) {
+                // ID部分取得
+                int id1 = Integer.parseInt(data1.split(",")[0]);
+                int id2 = Integer.parseInt(data2.split(",")[0]);
+                // 数値比較
+                return id1 - id2;
+            }
+        });
 
-	    // System.out.println(list);
-	    for (int i = 0; i < list.size(); i++) {
-	    	System.out.println(list.get(i));
-	    }
+        // System.out.println(list);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 
 

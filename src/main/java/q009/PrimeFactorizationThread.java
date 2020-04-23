@@ -8,6 +8,7 @@ import java.math.BigInteger;
 public class PrimeFactorizationThread extends Thread {
 	private BigInteger target;
 	private StringBuffer result = new StringBuffer();
+
 	public PrimeFactorizationThread(BigInteger target) {
 		this.target = target;
 	}
@@ -17,12 +18,12 @@ public class PrimeFactorizationThread extends Thread {
 		ResultData.getInstance().putStatus(target, ResultData.STATUS_EXECUTE);
 		BigInteger x = target;
 		// 素因数分解 2から順番に割り算
-		for (BigInteger i = new BigInteger("2"); compare(target, i);) {
+		for (BigInteger i = new BigInteger("2"); compare(target, i); ) {
 			if (x.remainder(i).equals(BigInteger.ZERO)) {
-            	result.append(i);
-                if (!x.equals(i)) {
-                	result.append(",");
-                }
+				result.append(i);
+				if (!x.equals(i)) {
+					result.append(",");
+				}
 				x = x.divide(i);
 			} else {
 				// 割り切れなかったので次の数字で再度割り算
@@ -36,6 +37,7 @@ public class PrimeFactorizationThread extends Thread {
 
 	/**
 	 * BigIntegerの比較用
+	 *
 	 * @param x
 	 * @param i
 	 * @return

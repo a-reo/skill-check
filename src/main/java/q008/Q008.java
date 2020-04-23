@@ -44,35 +44,36 @@ public class Q008 {
 
     /**
      * メイン処理
+     *
      * @param args
      */
     public static void main(String[] args) {
 
-    	Pattern pattern = Pattern.compile(CHECK_PATTERN);
-    	try {
-    		Stream<File> javaFiles = listJavaFiles();
-    		for (Iterator<File> it = javaFiles.iterator(); it.hasNext();) {
-    			File file = (File) it.next();
-    			// コメント行を削除
-    			String text = readText(file);
-    	        text = deleteLineComment(text);
-    	        text = deleteBlockComment(text);
+        Pattern pattern = Pattern.compile(CHECK_PATTERN);
+        try {
+            Stream<File> javaFiles = listJavaFiles();
+            for (Iterator<File> it = javaFiles.iterator(); it.hasNext(); ) {
+                File file = (File) it.next();
+                // コメント行を削除
+                String text = readText(file);
+                text = deleteLineComment(text);
+                text = deleteBlockComment(text);
 
-    	        // 埋め込み文字列表示
-    			BufferedReader br = new BufferedReader(new StringReader(text));
-    			String line;
-    			int lineNumber = 0;
-    			while ((line = br.readLine()) != null) {
-    				lineNumber++;
-    				if (check(pattern, line)) {
-        				System.out.println(file.getName() + "(" + lineNumber + "): " + line);
-    				}
+                // 埋め込み文字列表示
+                BufferedReader br = new BufferedReader(new StringReader(text));
+                String line;
+                int lineNumber = 0;
+                while ((line = br.readLine()) != null) {
+                    lineNumber++;
+                    if (check(pattern, line)) {
+                        System.out.println(file.getName() + "(" + lineNumber + "): " + line);
+                    }
 
-    			}
-    		}
-    	} catch (Exception e) {
-			e.printStackTrace();
-		}
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -88,32 +89,35 @@ public class Q008 {
 
     /**
      * ファイルを読み込む
+     *
      * @param file
      * @return
      * @throws FileNotFoundException
      */
-    private static FileInputStream  openJavaFile(File file) throws FileNotFoundException {
+    private static FileInputStream openJavaFile(File file) throws FileNotFoundException {
         return new FileInputStream(file.getAbsolutePath());
     }
 
     /**
      * パターンチェック
+     *
      * @param pattern
      * @param target
      * @return
      */
-    private static boolean check(Pattern pattern, String target){
-    	Matcher matcher = pattern.matcher(target);
+    private static boolean check(Pattern pattern, String target) {
+        Matcher matcher = pattern.matcher(target);
 
-    	if (matcher.find()){
-    		return true;
-    	} else {
-    		return false;
-    	}
+        if (matcher.find()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
      * 行コメントを削除する
+     *
      * @param text
      * @return
      */
@@ -140,6 +144,7 @@ public class Q008 {
 
     /**
      * ブロックコメントを削除する
+     *
      * @param text
      * @return
      */
@@ -166,6 +171,7 @@ public class Q008 {
 
     /**
      * ファイルを文字列として読み込む
+     *
      * @param file
      * @return
      * @throws IOException

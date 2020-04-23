@@ -25,7 +25,7 @@ public class Q004 {
 
 		// バブルソート
 		for (int i = 0; i < data.size(); i++) {
-			for (int j = 0; j < data.size() -i -1; j++) {
+			for (int j = 0; j < data.size() - i - 1; j++) {
 				if (data.compare(j, j + 1) == 1) {
 					data.exchange(j, j + 1);
 				}

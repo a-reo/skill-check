@@ -65,26 +65,26 @@ public class Q005 {
 				dataList.add(new WorkData(items[0], items[1], items[2], items[3], Integer.parseInt(items[4])));
 			}
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		// (1) 役職別の合計作業時間
 		Map<String, Integer> totaltimeByPositionMap = aggregateTotalTimeByPosition(dataList);
-	    for (String key : totaltimeByPositionMap.keySet()) {
-	        System.out.println(key + ": " + convertTime(totaltimeByPositionMap.get(key)));
-	    }
+		for (String key : totaltimeByPositionMap.keySet()) {
+			System.out.println(key + ": " + convertTime(totaltimeByPositionMap.get(key)));
+		}
 
 		// (2) Pコード別の合計作業時間
 		Map<String, Integer> totaltimeByPCodeMap = aggregateTotalTimeByPCode(dataList);
-	    for (String key : totaltimeByPCodeMap.keySet()) {
-	        System.out.println(key + ": " + convertTime(totaltimeByPCodeMap.get(key)));
-	    }
+		for (String key : totaltimeByPCodeMap.keySet()) {
+			System.out.println(key + ": " + convertTime(totaltimeByPCodeMap.get(key)));
+		}
 
 		// (3) 社員番号別の合計作業時間
 		Map<String, Integer> totaltimeByNumberMap = aggregateTotalTimeByNumber(dataList);
-	    for (String key : totaltimeByNumberMap.keySet()) {
-	        System.out.println(key + ": " + convertTime(totaltimeByNumberMap.get(key)));
-	    }
+		for (String key : totaltimeByNumberMap.keySet()) {
+			System.out.println(key + ": " + convertTime(totaltimeByNumberMap.get(key)));
+		}
 	}
 
     /**
@@ -105,7 +105,7 @@ public class Q005 {
 		Map<String, Integer> totaltimeByPositionMap = new LinkedHashMap<String, Integer>();
 		for (int i = 0; i < dataList.size(); i++) {
 			if (totaltimeByPositionMap.containsKey(dataList.get(i).getPosition())) {
-				int workTime = totaltimeByPositionMap.get(dataList.get(i).getPosition()) +  dataList.get(i).getWorkTime();
+				int workTime = totaltimeByPositionMap.get(dataList.get(i).getPosition()) + dataList.get(i).getWorkTime();
 				totaltimeByPositionMap.put(dataList.get(i).getPosition(), workTime);
 			} else {
 				totaltimeByPositionMap.put(dataList.get(i).getPosition(), dataList.get(i).getWorkTime());
@@ -124,7 +124,7 @@ public class Q005 {
 		Map<String, Integer> totaltimeByPCodeMap = new LinkedHashMap<String, Integer>();
 		for (int i = 0; i < dataList.size(); i++) {
 			if (totaltimeByPCodeMap.containsKey(dataList.get(i).getpCode())) {
-				int workTime = totaltimeByPCodeMap.get(dataList.get(i).getpCode()) +  dataList.get(i).getWorkTime();
+				int workTime = totaltimeByPCodeMap.get(dataList.get(i).getpCode()) + dataList.get(i).getWorkTime();
 				totaltimeByPCodeMap.put(dataList.get(i).getpCode(), workTime);
 			} else {
 				totaltimeByPCodeMap.put(dataList.get(i).getpCode(), dataList.get(i).getWorkTime());
@@ -143,7 +143,7 @@ public class Q005 {
 		Map<String, Integer> totaltimeByNumberMap = new LinkedHashMap<String, Integer>();
 		for (int i = 0; i < dataList.size(); i++) {
 			if (totaltimeByNumberMap.containsKey(dataList.get(i).getNumber())) {
-				int workTime = totaltimeByNumberMap.get(dataList.get(i).getNumber()) +  dataList.get(i).getWorkTime();
+				int workTime = totaltimeByNumberMap.get(dataList.get(i).getNumber()) + dataList.get(i).getWorkTime();
 				totaltimeByNumberMap.put(dataList.get(i).getNumber(), workTime);
 			} else {
 				totaltimeByNumberMap.put(dataList.get(i).getNumber(), dataList.get(i).getWorkTime());
@@ -154,6 +154,7 @@ public class Q005 {
 
 	/**
 	 * 分を"N時間N分"に変換する
+	 *
 	 * @param time
 	 * @return
 	 */

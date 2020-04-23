@@ -21,30 +21,30 @@ public class WorkData {
     private int workTime;
 
     public WorkData(String number, String department, String position, String pCode, int workTime) {
-    	this.number = number;
-    	this.department = department;
-    	this.position = position;
-    	this.pCode = pCode;
-    	this.workTime = workTime;
+        this.number = number;
+        this.department = department;
+        this.position = position;
+        this.pCode = pCode;
+        this.workTime = workTime;
     }
 
-	public String getNumber() {
-		return number;
-	}
+    public String getNumber() {
+        return number;
+    }
 
-	public String getDepartment() {
-		return department;
-	}
+    public String getDepartment() {
+        return department;
+    }
 
-	public String getPosition() {
-		return position;
-	}
+    public String getPosition() {
+        return position;
+    }
 
-	public String getpCode() {
-		return pCode;
-	}
+    public String getpCode() {
+        return pCode;
+    }
 
-	public int getWorkTime() {
-		return workTime;
-	}
+    public int getWorkTime() {
+        return workTime;
+    }
 }
