@@ -36,11 +36,11 @@ Q004.java(13): Pattern pattern = Pattern.compile("(\".*\")|(\'.*\')");
  */
 public class Q008 {
 
-	/** チェックパターン */
-	private static final String CHECK_PATTERN = "\".*\"";
+    /** チェックパターン */
+    private static final String CHECK_PATTERN = "\".*\"";
 
-	/** 改行コード */
-	private static String LINE_SEP = System.getProperty("line.separator");
+    /** 改行コード */
+    private static String LINE_SEP = System.getProperty("line.separator");
 
     /**
      * メイン処理

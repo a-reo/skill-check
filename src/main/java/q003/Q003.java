@@ -34,68 +34,69 @@ ignorance=1
  */
 public class Q003 {
 
-	/** 区切り文字 */
-	private static final String SEPARATOR = "\\,|\\.|[\\s]|\\–";
+    /** 区切り文字 */
+    private static final String SEPARATOR = "\\,|\\.|[\\s]|\\–";
 
     /**
      * メイン処理
+     *
      * @param args
      */
-	public static void main(String[] args) {
-		// 辞書データ
-		Map<String, Integer> data = new HashMap<>();
+    public static void main(String[] args) {
+        // 辞書データ
+        Map<String, Integer> data = new HashMap<>();
 
-		// 単語数ごとにカウント
-		try {
-			InputStreamReader reader = new InputStreamReader(openDataFile(), "utf-8");
-			BufferedReader br = new BufferedReader(reader);
-			String line;
-			while ((line = br.readLine()) != null) {
-				String[] words = line.split(SEPARATOR);
-				for (String word : words) {
-					// "I"以外の単語をすべて小文字にする
-					if (!word.equals("I")) {
-						word = word.toLowerCase();
-					}
-					// 単語カウント
-					if (!word.isEmpty()) {
-						if (data.containsKey(word)) {
-							int count = data.get(word) + 1;
-							data.put(word, count);
-						} else {
-							data.put(word, 1);
-						}
-					}
-				}
-			}
+        // 単語数ごとにカウント
+        try {
+            InputStreamReader reader = new InputStreamReader(openDataFile(), "utf-8");
+            BufferedReader br = new BufferedReader(reader);
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] words = line.split(SEPARATOR);
+                for (String word : words) {
+                    // "I"以外の単語をすべて小文字にする
+                    if (!word.equals("I")) {
+                        word = word.toLowerCase();
+                    }
+                    // 単語カウント
+                    if (!word.isEmpty()) {
+                        if (data.containsKey(word)) {
+                            int count = data.get(word) + 1;
+                            data.put(word, count);
+                        } else {
+                            data.put(word, 1);
+                        }
+                    }
+                }
+            }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		// アルファベット順にソート（大文字小文字を区別しない）
-		List<String> mapkey = new ArrayList<>(data.keySet());
-		Collections.sort(mapkey, new java.util.Comparator<String>() {
-			@Override
-			public int compare(String data1, String data2) {
-				String key1 = data1.toLowerCase();
-				String key2 = data2.toLowerCase();
-				return key1.compareTo(key2);
-			}
-		});
+        // アルファベット順にソート（大文字小文字を区別しない）
+        List<String> mapkey = new ArrayList<>(data.keySet());
+        Collections.sort(mapkey, new java.util.Comparator<String>() {
+            @Override
+            public int compare(String data1, String data2) {
+                String key1 = data1.toLowerCase();
+                String key2 = data2.toLowerCase();
+                return key1.compareTo(key2);
+            }
+        });
 
-		// 表示
-		for (String key : mapkey) {
-			System.out.println(key + "=" + data.get(key));
-		}
-	}
+        // 表示
+        for (String key : mapkey) {
+            System.out.println(key + "=" + data.get(key));
+        }
+    }
 
-	/**
+    /**
      * データファイルを開く
      * resources/q003/data.txt
      */
     private static InputStream openDataFile() {
-    	return Q003.class.getResourceAsStream("data.txt");
+        return Q003.class.getResourceAsStream("data.txt");
     }
 
 }
