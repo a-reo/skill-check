@@ -1,5 +1,10 @@
 package q009;
 
+import java.math.BigInteger;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Q009 重い処理を別スレッドで実行
  *
@@ -22,5 +27,46 @@ package q009;
 12345: 3,5,823
  */
 public class Q009 {
+
+	/** 終了判定文字列 */
+	private static final String EXIT = "exit";
+
+    /**
+     * メイン処理
+     * @param args
+     */
+    public static void main(String[] args) {
+    	 ExecutorService executor = Executors.newCachedThreadPool();
+
+    	// 標準入力から整数を受け取る
+    	// exit が入力されたら終了するようにする
+    	Scanner scanner = new Scanner(System.in);
+    	String line = null;
+    	while(!EXIT.equals(line)){
+        	System.out.print("入力) ");
+        	line = scanner.nextLine();
+        	// 入力値判定
+        	switch(line) {
+        		case "":
+        			// 結果表示
+            		ResultData.getInstance().printResult();
+            		break;
+        		case EXIT:
+            		break;
+        		default:
+        			// 整数であったら素因数分解
+        	        try {
+        	        	BigInteger target = new BigInteger(line);
+        	        	PrimeFactorizationThread thread = new PrimeFactorizationThread(target);
+        	        	executor.submit(thread);
+        	        } catch (NumberFormatException e) {
+            	    	System.out.println("整数または空文字を入力してください. ※exitを入力すると終了します");
+        	        }
+            		break;
+        	}
+    	}
+    	scanner.close();
+    	executor.shutdown();
+    }
 }
-// 完成までの時間: xx時間 xx分
+// 完成までの時間: 2時間 40分
