@@ -40,7 +40,13 @@ public class Q008 {
     private static final String CHECK_PATTERN = "\".*\"";
 
     /** 改行コード */
-    private static String LINE_SEP = System.getProperty("line.separator");
+    private static final String LINE_SEP = System.getProperty("line.separator");
+
+    /** コメント行 スラッシュ */
+    private static final char COMMENT_SLASH = '/';
+
+    /** コメント行 アスタリスク */
+    private static final char COMMENT_ASTERISK = '*';
 
     /**
      * メイン処理
@@ -75,7 +81,6 @@ public class Q008 {
             e.printStackTrace();
         }
     }
-
 
     /**
      * JavaファイルのStreamを作成する
@@ -156,10 +161,10 @@ public class Q008 {
             char ch = text.charAt(i);
 
             if (isBlockComment) {
-                if (ch == '/' && text.charAt(i - 1) == '*') {
+                if (ch == COMMENT_SLASH && text.charAt(i - 1) == COMMENT_ASTERISK) {
                     isBlockComment = false;
                 }
-            } else if (ch == '/' && text.charAt(i + 1) == '*') {
+            } else if (ch == COMMENT_SLASH && text.charAt(i + 1) == COMMENT_ASTERISK) {
                 isBlockComment = true;
             } else {
                 buf.append(ch);
@@ -189,4 +194,4 @@ public class Q008 {
     }
 
 }
-// 完成までの時間: 1時間 20分
+// 完成までの時間: 2時間 20分
