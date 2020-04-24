@@ -98,6 +98,11 @@ public class Q007 {
             System.out.println();
             System.out.println("[答え]");
             System.out.println(count);
+        } catch (UnreachableException ue) {
+            // ゴールへ辿り着けなかった場合
+            System.out.println();
+            System.out.println("[答え]");
+            System.out.println(-1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -237,7 +242,7 @@ public class Q007 {
      */
     private static Block getShortestOpenBlock(List<Block> openList) throws Exception {
         if (openList.size() == 0) {
-            throw new Exception("ゴールへ辿り着く道はありません。");
+            throw new UnreachableException("ゴールへ辿り付く経路がありません.");
         }
         Block shortest = null;
         int index = 0;
@@ -279,5 +284,17 @@ public class Q007 {
         //親ブロック
         Block parent = null;
     }
+
+    /**
+     * 到達不可能例外
+     */
+    private static class UnreachableException extends Exception {
+
+        private static final long serialVersionUID = 1L;
+
+        UnreachableException(String message) {
+            super(message);
+        }
+    }
 }
-// 完成までの時間: 2時間 50分
+// 完成までの時間: 3時間 20分
